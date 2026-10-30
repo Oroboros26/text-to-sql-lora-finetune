@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" font-family="Helvetica,Arial,sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#475569"/></marker></defs>
+<rect width="960" height="440" fill="#ffffff"/>
+<text x="30" y="28" font-size="18" font-weight="bold" fill="#0f172a">text2sql-finetune: does fine-tuning beat prompting?</text>
+<text x="30" y="48" font-size="13" font-weight="bold" fill="#1d4ed8">1. Build the dataset</text>
+<rect x="30" y="60" width="150" height="54" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+<text x="105" y="83" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">seeds.jsonl</text>
+<text x="105" y="101" font-size="11" text-anchor="middle" fill="#334155">30 hand-written Q + SQL</text>
+<rect x="216" y="60" width="150" height="54" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+<text x="291" y="83" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">LLM expands</text>
+<text x="291" y="101" font-size="11" text-anchor="middle" fill="#334155">~60 variants per seed</text>
+<rect x="402" y="60" width="150" height="54" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+<text x="477" y="83" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">Run on SQLite</text>
+<text x="477" y="101" font-size="11" text-anchor="middle" fill="#334155">drop errors / empty rows</text>
+<rect x="588" y="60" width="150" height="54" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+<text x="663" y="83" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">Split by template</text>
+<text x="663" y="101" font-size="11" text-anchor="middle" fill="#334155">test shapes never trained</text>
+<rect x="774" y="60" width="150" height="54" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+<text x="849" y="83" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">train / val / test</text>
+<text x="849" y="101" font-size="11" text-anchor="middle" fill="#334155">data/*.jsonl</text>
+<line x1="184" y1="87" x2="212" y2="87" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="370" y1="87" x2="398" y2="87" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="556" y1="87" x2="584" y2="87" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="742" y1="87" x2="770" y2="87" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="30" y="178" font-size="13" font-weight="bold" fill="#15803d">2. Fine-tune (GPU box)</text>
+<rect x="30" y="190" width="150" height="54" rx="8" fill="#dcfce7" stroke="#15803d"/>
+<text x="105" y="213" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">train + val</text>
+<text x="105" y="231" font-size="11" text-anchor="middle" fill="#334155">chat format, same prompt</text>
+<rect x="216" y="190" width="150" height="54" rx="8" fill="#dcfce7" stroke="#15803d"/>
+<text x="291" y="213" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">QLoRA training</text>
+<text x="291" y="231" font-size="11" text-anchor="middle" fill="#334155">train.py, seed 42, MLflow</text>
+<rect x="402" y="190" width="150" height="54" rx="8" fill="#dcfce7" stroke="#15803d"/>
+<text x="477" y="213" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">LoRA adapter</text>
+<text x="477" y="231" font-size="11" text-anchor="middle" fill="#334155">+ GPU hours logged</text>
+<rect x="588" y="190" width="150" height="54" rx="8" fill="#dcfce7" stroke="#15803d"/>
+<text x="663" y="213" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">Merge</text>
+<text x="663" y="231" font-size="11" text-anchor="middle" fill="#334155">merge.py</text>
+<rect x="774" y="190" width="150" height="54" rx="8" fill="#dcfce7" stroke="#15803d"/>
+<text x="849" y="213" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">Hugging Face</text>
+<text x="849" y="231" font-size="11" text-anchor="middle" fill="#334155">model + dataset card</text>
+<line x1="184" y1="217" x2="212" y2="217" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="370" y1="217" x2="398" y2="217" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="556" y1="217" x2="584" y2="217" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="742" y1="217" x2="770" y2="217" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="30" y="308" font-size="13" font-weight="bold" fill="#c2410c">3. Compare every system the same way</text>
+<rect x="30" y="320" width="150" height="54" rx="8" fill="#ffedd5" stroke="#c2410c"/>
+<text x="105" y="343" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">test.jsonl</text>
+<text x="105" y="361" font-size="11" text-anchor="middle" fill="#334155">held-out questions</text>
+<rect x="216" y="320" width="150" height="54" rx="8" fill="#ffedd5" stroke="#c2410c"/>
+<text x="291" y="343" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">Systems under test</text>
+<text x="291" y="361" font-size="11" text-anchor="middle" fill="#334155">base | hosted | fine-tuned</text>
+<rect x="402" y="320" width="150" height="54" rx="8" fill="#ffedd5" stroke="#c2410c"/>
+<text x="477" y="343" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">eval/run.py</text>
+<text x="477" y="361" font-size="11" text-anchor="middle" fill="#334155">OpenAI-compatible API</text>
+<rect x="588" y="320" width="150" height="54" rx="8" fill="#ffedd5" stroke="#c2410c"/>
+<text x="663" y="343" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">Metrics JSON</text>
+<text x="663" y="361" font-size="11" text-anchor="middle" fill="#334155">exec acc, p50/p95, $/1k</text>
+<rect x="774" y="320" width="150" height="54" rx="8" fill="#ffedd5" stroke="#c2410c"/>
+<text x="849" y="343" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">README table</text>
+<text x="849" y="361" font-size="11" text-anchor="middle" fill="#334155">make table</text>
+<line x1="184" y1="347" x2="212" y2="347" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="370" y1="347" x2="398" y2="347" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="556" y1="347" x2="584" y2="347" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="742" y1="347" x2="770" y2="347" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="30" y="410" font-size="12" fill="#334155">Row 1 feeds rows 2 and 3: train/val go to training, test goes to evaluation. The same SQL is run read-only to score every system.</text>
+<text x="30" y="428" font-size="12" fill="#b91c1c">Design diagram: see the README for what is implemented.</text>
+</svg>

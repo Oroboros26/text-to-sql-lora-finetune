@@ -1,0 +1,24 @@
+[project]
+name = "text-to-sql-lora-finetune"
+version = "0.1.0"
+requires-python = ">=3.11"
+# Note: ranges, not pins. Run `uv lock` (or pip-compile) once to pin, then commit the lockfile.
+dependencies = ["openai>=1.40", "pyyaml>=6"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+train = ["torch", "transformers>=4.44", "trl>=0.11", "peft>=0.12", "bitsandbytes>=0.43", "datasets>=2.20", "mlflow>=2.14"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+text2sql = ["schema.sql"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

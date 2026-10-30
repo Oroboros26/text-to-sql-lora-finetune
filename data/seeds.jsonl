@@ -1,0 +1,30 @@
+{"id": 1, "question": "How many orders are there?", "sql": "SELECT COUNT(*) FROM orders;"}
+{"id": 2, "question": "How many products are in the jackets category?", "sql": "SELECT COUNT(*) FROM products WHERE category = 'jackets';"}
+{"id": 3, "question": "List all store names alphabetically.", "sql": "SELECT name FROM stores ORDER BY name;"}
+{"id": 4, "question": "What is the average product price?", "sql": "SELECT AVG(price) FROM products;"}
+{"id": 5, "question": "Which store has the most orders?", "sql": "SELECT s.name FROM stores s JOIN orders o ON o.store_id = s.id GROUP BY s.id ORDER BY COUNT(*) DESC LIMIT 1;"}
+{"id": 6, "question": "How many orders were returned?", "sql": "SELECT COUNT(*) FROM orders WHERE status = 'returned';"}
+{"id": 7, "question": "Total units sold per category.", "sql": "SELECT p.category, SUM(oi.qty) FROM order_items oi JOIN products p ON p.id = oi.product_id GROUP BY p.category;"}
+{"id": 8, "question": "What is the most expensive product?", "sql": "SELECT name FROM products ORDER BY price DESC LIMIT 1;"}
+{"id": 9, "question": "Number of orders per month.", "sql": "SELECT strftime('%m', order_date) AS m, COUNT(*) FROM orders GROUP BY m ORDER BY m;"}
+{"id": 10, "question": "Revenue per store.", "sql": "SELECT s.name, SUM(oi.qty * p.price) FROM stores s JOIN orders o ON o.store_id = s.id JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id GROUP BY s.id;"}
+{"id": 11, "question": "Which stores are in France?", "sql": "SELECT name FROM stores WHERE country = 'FR';"}
+{"id": 12, "question": "Products priced above 100, alphabetically.", "sql": "SELECT name FROM products WHERE price > 100 ORDER BY name;"}
+{"id": 13, "question": "How many orders were placed in March 2024?", "sql": "SELECT COUNT(*) FROM orders WHERE order_date BETWEEN '2024-03-01' AND '2024-03-31';"}
+{"id": 14, "question": "Which products appear in fewer than 130 orders?", "sql": "SELECT p.name FROM products p JOIN order_items oi ON oi.product_id = p.id GROUP BY p.id HAVING COUNT(*) < 130;"}
+{"id": 15, "question": "Average number of units per order.", "sql": "SELECT AVG(n) FROM (SELECT SUM(qty) AS n FROM order_items GROUP BY order_id);"}
+{"id": 16, "question": "Top 3 products by units sold.", "sql": "SELECT p.name, SUM(oi.qty) AS u FROM order_items oi JOIN products p ON p.id = oi.product_id GROUP BY p.id ORDER BY u DESC LIMIT 3;"}
+{"id": 17, "question": "Return rate per store.", "sql": "SELECT s.name, AVG(o.status = 'returned') FROM stores s JOIN orders o ON o.store_id = s.id GROUP BY s.id;"}
+{"id": 18, "question": "How many distinct product categories are there?", "sql": "SELECT COUNT(DISTINCT category) FROM products;"}
+{"id": 19, "question": "Cancelled orders per country.", "sql": "SELECT s.country, COUNT(*) FROM orders o JOIN stores s ON s.id = o.store_id WHERE o.status = 'cancelled' GROUP BY s.country;"}
+{"id": 20, "question": "Cheapest product price per category.", "sql": "SELECT category, MIN(price) FROM products GROUP BY category;"}
+{"id": 21, "question": "Stores with more than 100 shipped orders.", "sql": "SELECT s.name FROM stores s JOIN orders o ON o.store_id = s.id WHERE o.status = 'shipped' GROUP BY s.id HAVING COUNT(*) > 100;"}
+{"id": 22, "question": "What is the date of the latest order?", "sql": "SELECT MAX(order_date) FROM orders;"}
+{"id": 23, "question": "Total quantity of items sold.", "sql": "SELECT SUM(qty) FROM order_items;"}
+{"id": 24, "question": "How many orders contain a tent?", "sql": "SELECT COUNT(DISTINCT oi.order_id) FROM order_items oi JOIN products p ON p.id = oi.product_id WHERE p.category = 'tents';"}
+{"id": 25, "question": "Revenue per month.", "sql": "SELECT strftime('%m', o.order_date) AS m, SUM(oi.qty * p.price) FROM orders o JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id GROUP BY m ORDER BY m;"}
+{"id": 26, "question": "Categories whose average price is above 80.", "sql": "SELECT category FROM products GROUP BY category HAVING AVG(price) > 80;"}
+{"id": 27, "question": "Pending orders per store.", "sql": "SELECT s.name, COUNT(*) FROM orders o JOIN stores s ON s.id = o.store_id WHERE o.status = 'pending' GROUP BY s.id;"}
+{"id": 28, "question": "Which order has the largest total quantity?", "sql": "SELECT order_id FROM order_items GROUP BY order_id ORDER BY SUM(qty) DESC LIMIT 1;"}
+{"id": 29, "question": "Products with 'Trail' in the name.", "sql": "SELECT name FROM products WHERE name LIKE '%Trail%' ORDER BY name;"}
+{"id": 30, "question": "Which stores sold jackets?", "sql": "SELECT DISTINCT s.name FROM stores s JOIN orders o ON o.store_id = s.id JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id WHERE p.category = 'jackets' ORDER BY s.name;"}
